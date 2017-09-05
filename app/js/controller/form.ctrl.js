@@ -1,32 +1,28 @@
-'user strict';
-(function() {
+'use strict';
+(function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($scope,$state, $http,AnswerService) {
+    app.controller("FormController", function FormController($scope, $state, $http, AnswerService, quiz) {
+
+        //TODO: tem que melhorar a resposta para os usuários. 
 
         var self = this;
 
-        self.quiz =  AnswerService.getQuiz($state.params.id).then(
-            function success(response){
-                console.log(response)
-                return response.value;
-            }
-        );
+        self.quiz = quiz.data;
 
         console.log(self.quiz);
+
         self.radio_question = {};
         self.text_question = {};
         self.token = $state.params.token;
-        self.curso =$state.params.curso;
-        console.log(self.curso); 
-        console.log(self.token)
+        self.curso = $state.params.curso;
         self.visible = {};
-
-        self.toggle = function(q, id) {
+        
+        self.toggle = function (q, id) {
             q[id] = !q[id];
         };
 
-        self.sendAnswer = function(token) {
+        self.sendAnswer = function (token) {
             AnswerService.submitAnswers(token,
                 self.text_question, self.radio_question)
                 .then(function successCallback(response) {
@@ -39,7 +35,7 @@
                 });
         };
 
-        self.sendNegar = function(token) {
+        self.sendNegar = function (token) {
             AnswerService.submitNoAnswers(token).then(function successCallback(response) {
                 ngToast.create(response.data);
             }, function errorCallback(response) {
@@ -50,13 +46,11 @@
             });
         };
 
-        self.selectAll = function(value) {
-            for ( var id in self.radio_question) {
-                self.radio_question[id] = value;
-            }
+        self.selectAll = function (value) {
+            self.radio_question = self.radio_question.map(() => {
+                return value;
+            });
         };
-
-     
 
     });
 })();
