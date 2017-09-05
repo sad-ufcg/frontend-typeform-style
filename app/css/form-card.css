@@ -1,4 +1,45 @@
+.question-card {
+    margin-left: 20%;
+}
+
 .question-card md-card {
     min-width: 50%;
     min-height: 50%;
+
+    background-color: transparent;
+}
+
+.question-card md-card-header {
+    background-color: #82b1ff;
+}
+
+.question-card md-card-content {
+    padding-bottom: 0;
+}
+
+.card-footer {
+    /*
+    position: fixed;
+    bottom: 0;
+    */
+    height: 15%;
+    width: 100%;
+    padding: 2% 0;
+    color: #4d82cb;
+    background-color: #dbe3ff;
+}
+
+.card-footer span {
+    font-size: small;
+    padding: 5px 5px;
+}
+
+.card-footer .question-card button {
+    color: #ffffff;
+    background-color: #82b1ff;
+}
+
+.card-answer-opts {
+    padding-left: 2%;
+    font-size: medium;
 }

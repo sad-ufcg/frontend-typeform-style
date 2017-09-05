@@ -1,5 +1,31 @@
+html,
+body {
+    background-color: #ffffff;
+    height: 100%;
+}
+
+section {
+    height: 100%;
+}
+
+.ng-scope {
+    height: 100%;
+}
+
 .form-container {
-    position: absolute;
     width: 100%;
     height: 100%;
+}
+
+.form {
+    position: relative;
+    min-width: 100%;
+    min-height: 85%;
+    height: auto !important;
+    height: 85%;
+}
+
+md-content {
+    width: 100%;
+    background-color: transparent;
 }
