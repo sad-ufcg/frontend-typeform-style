@@ -19,17 +19,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
 
-
 </head>
 
 <body ng-app="sadApp" ng-cloak>
 
-
     <section>
-        <div ui-view="main">   
+        <div ui-view="main">
         </div>
     </section>
-
 
     <script src="../node_modules/angular/angular.min.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
@@ -38,14 +35,16 @@
     <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
     <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-    <!--Config-->
+    <!-- Config -->
     <script src="./js/config.js"></script>
 
-    <!--Controller-->
-    <script src="./js/controller/Main.controller.js"></script>
-    <script src="./js/controller/Home.controller.js"></script>
+    <!-- Controller -->
+    <script src="./js/controller/main.ctrl.js"></script>
+    <script src="./js/controller/home.ctrl.js"></script>
+    <script src="./js/controller/form.ctrl.js"></script>
 
-
+    <!-- Services -->
+    <script src="./js/services/answer.srv.js"></script>
 
 </body>
 
