@@ -2,15 +2,24 @@
 (function() {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($scope, $http, $route, ngToast, AnswerService, quiz) {
+    app.controller("FormController", function FormController($scope,$state, $http,AnswerService) {
 
         var self = this;
 
-        self.quiz = quiz;
+        self.quiz =  AnswerService.getQuiz($state.params.id).then(
+            function success(response){
+                console.log(response)
+                return response.value;
+            }
+        );
+
+        console.log(self.quiz);
         self.radio_question = {};
         self.text_question = {};
-        self.token = $route.current.params.token;
-        self.curso = $route.current.params.curso;
+        self.token = $state.params.token;
+        self.curso =$state.params.curso;
+        console.log(self.curso); 
+        console.log(self.token)
         self.visible = {};
 
         self.toggle = function(q, id) {
@@ -47,7 +56,7 @@
             }
         };
 
-        $('.collapse').collapse('hide');
+     
 
     });
 })();
