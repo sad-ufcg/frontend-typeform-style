@@ -3,8 +3,10 @@
 }
 
 .question-card md-card {
-    min-width: 50%;
     min-height: 50%;
+    min-width: 60%;
+    width: 60% !important;
+    width: 60%;
 
     background-color: transparent;
 }
