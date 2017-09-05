@@ -2,7 +2,7 @@
     margin-left: 20%;
 }
 
-.question-card md-card {
+.question-card .card {
     min-height: 50%;
     width: auto !important;
     max-width: 90% !important;
@@ -10,12 +10,31 @@
     background-color: transparent;
 }
 
-.question-card md-card-header {
-    background-color: #82b1ff;
+.question-card .card-header {
+    background-color: transparent;
 }
 
-.question-card md-card-content {
+.question-card .card-content {
     padding-bottom: 0;
+    color: #82b1ff;
+}
+
+.question-card .card-content .checkbox {
+
+    border: 1px solid #82b1ff;
+    border-radius: 5px;
+
+    background-color: #dbe3ff;
+    color: #4d82cb;
+
+    padding: 4px 4px;
+    margin: 2px 2px;
+
+    width: auto !important;
+}
+
+.question-card .card-content md-radio-button {
+    margin: 0 0;
 }
 
 .card-footer {
