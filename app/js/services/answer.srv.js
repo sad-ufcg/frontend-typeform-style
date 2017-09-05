@@ -13,7 +13,6 @@
 
         service.getQuiz = function getQuiz(){
             var deffered = $q.defer();
-            console.log(baseUrl)
             $http.get(baseUrl + URI_QUESTION).then(
                 function success(response){
                     deffered.resolve(response);

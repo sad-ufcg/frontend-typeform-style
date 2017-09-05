@@ -4,20 +4,53 @@
 
     app.controller("FormController", function FormController($scope, $state, $http, AnswerService, quiz) {
 
-        //TODO: tem que melhorar a resposta para os usuários. 
+        //TODO: treat unexpected situations with toastr
+        //      the functions (send, select and sendNegar) haven't been tested yet
 
         var self = this;
+        var formCtrl = this;
 
         self.quiz = quiz.data;
 
-        console.log(self.quiz);
+        formCtrl.radio_question = {};
+        formCtrl.text_question = {};
+        formCtrl.token = $state.params.token;
+        formCtrl.curso = $state.params.curso;
+        formCtrl.visible = {};
+        formCtrl.count = 0;
+        formCtrl.actual_question = self.quiz[formCtrl.count];
+        formCtrl.determinateValue = 0;
 
-        self.radio_question = {};
-        self.text_question = {};
-        self.token = $state.params.token;
-        self.curso = $state.params.curso;
-        self.visible = {};
-        
+        formCtrl.next = function () {
+
+            if (formCtrl.count < self.quiz.length - 2) {
+                formCtrl.count += 2;
+                formCtrl.actual_question = self.quiz[formCtrl.count];
+                self.calcPercentage(formCtrl.count);
+                
+            } else {
+                console.log("last question");
+            }
+        };
+
+        formCtrl.previous = function () {
+
+            if (formCtrl.count > 0) {
+                formCtrl.count -= 2;
+                formCtrl.actual_question = self.quiz[formCtrl.count];
+                self.calcPercentage(formCtrl.count);
+                
+
+            } else {
+                console.log("first question");
+            }
+
+        };
+
+        self.calcPercentage = function (count) {
+            formCtrl.determinateValue = count / (self.quiz.length - 2)*100;
+        };
+
         self.toggle = function (q, id) {
             q[id] = !q[id];
         };
