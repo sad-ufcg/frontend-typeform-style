@@ -10,7 +10,6 @@
         var formCtrl = this;
 
         formCtrl.quiz = quiz.data;
-
         formCtrl.radio_question = {};
         formCtrl.text_question = {};
         formCtrl.token = $state.params.token;
@@ -19,31 +18,33 @@
         formCtrl.count = 0;
         formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
         formCtrl.determinateValue = 0;
+        formCtrl.numberQuestion = 1;
+        formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
 
         formCtrl.next = function () {
 
-            if (formCtrl.count < formCtrl.quiz.length - 2) {
+            var LAST_QUESTION = formCtrl.quiz.length - 2;
+            if (formCtrl.count < LAST_QUESTION) {
                 formCtrl.count += 2;
                 formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
                 formCtrl.calcPercentage(formCtrl.count);
-                
-            } else {
-                console.log("last question");
+                formCtrl.upDateNumberQuestion(1);
             }
         };
 
         formCtrl.previous = function () {
 
-            if (formCtrl.count > 0) {
+            var FIRST_QUESTION = 0;
+            if (formCtrl.count > FIRST_QUESTION) {
                 formCtrl.count -= 2;
                 formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
                 formCtrl.calcPercentage(formCtrl.count);
-                
-
-            } else {
-                console.log("first question");
+                formCtrl.upDateNumberQuestion(-1);
             }
+        };
 
+        formCtrl.upDateNumberQuestion = function (value) {
+          formCtrl.numberQuestion = formCtrl.numberQuestion + value;
         };
 
         formCtrl.calcPercentage = function (count) {
