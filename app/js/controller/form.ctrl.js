@@ -7,10 +7,9 @@
         //TODO: treat unexpected situations with toastr
         //      the functions (send, select and sendNegar) haven't been tested yet
 
-        var self = this;
         var formCtrl = this;
 
-        self.quiz = quiz.data;
+        formCtrl.quiz = quiz.data;
 
         formCtrl.radio_question = {};
         formCtrl.text_question = {};
@@ -18,15 +17,15 @@
         formCtrl.curso = $state.params.curso;
         formCtrl.visible = {};
         formCtrl.count = 0;
-        formCtrl.actual_question = self.quiz[formCtrl.count];
+        formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
         formCtrl.determinateValue = 0;
 
         formCtrl.next = function () {
 
-            if (formCtrl.count < self.quiz.length - 2) {
+            if (formCtrl.count < formCtrl.quiz.length - 2) {
                 formCtrl.count += 2;
-                formCtrl.actual_question = self.quiz[formCtrl.count];
-                self.calcPercentage(formCtrl.count);
+                formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
+                formCtrl.calcPercentage(formCtrl.count);
                 
             } else {
                 console.log("last question");
@@ -37,8 +36,8 @@
 
             if (formCtrl.count > 0) {
                 formCtrl.count -= 2;
-                formCtrl.actual_question = self.quiz[formCtrl.count];
-                self.calcPercentage(formCtrl.count);
+                formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
+                formCtrl.calcPercentage(formCtrl.count);
                 
 
             } else {
@@ -47,17 +46,17 @@
 
         };
 
-        self.calcPercentage = function (count) {
-            formCtrl.determinateValue = count / (self.quiz.length - 2)*100;
+        formCtrl.calcPercentage = function (count) {
+            formCtrl.determinateValue = count / (formCtrl.quiz.length - 2)*100;
         };
 
-        self.toggle = function (q, id) {
+        formCtrl.toggle = function (q, id) {
             q[id] = !q[id];
         };
 
-        self.sendAnswer = function (token) {
+        formCtrl.sendAnswer = function (token) {
             AnswerService.submitAnswers(token,
-                self.text_question, self.radio_question)
+                formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
                     ngToast.create(response.data);
                 }, function errorCallback(response) {
@@ -68,7 +67,7 @@
                 });
         };
 
-        self.sendNegar = function (token) {
+        formCtrl.sendNegar = function (token) {
             AnswerService.submitNoAnswers(token).then(function successCallback(response) {
                 ngToast.create(response.data);
             }, function errorCallback(response) {
@@ -79,8 +78,8 @@
             });
         };
 
-        self.selectAll = function (value) {
-            self.radio_question = self.radio_question.map(() => {
+        formCtrl.selectAll = function (value) {
+            formCtrl.radio_question = formCtrl.radio_question.map(() => {
                 return value;
             });
         };
