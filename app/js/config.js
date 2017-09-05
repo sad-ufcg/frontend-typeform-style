@@ -30,6 +30,11 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
                     templateUrl: 'view/form.html',
                     controller: 'FormController as formCtrl'
                 }
+            }, 
+            resolve: {
+                quiz: function (AnswerService){
+                    return AnswerService.getQuiz();
+                }
             }
         });
 

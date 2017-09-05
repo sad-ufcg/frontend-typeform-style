@@ -1,34 +1,62 @@
-'user strict';
-(function() {
+'use strict';
+(function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($scope,$state, $http,AnswerService) {
+    app.controller("FormController", function FormController($scope, $state, $http, AnswerService, quiz) {
 
-        var self = this;
+        //TODO: treat unexpected situations with toastr
+        //      the functions (send, select and sendNegar) haven't been tested yet
 
-        self.quiz =  AnswerService.getQuiz($state.params.id).then(
-            function success(response){
-                console.log(response)
-                return response.value;
+        var formCtrl = this;
+
+        formCtrl.quiz = quiz.data;
+
+        formCtrl.radio_question = {};
+        formCtrl.text_question = {};
+        formCtrl.token = $state.params.token;
+        formCtrl.curso = $state.params.curso;
+        formCtrl.visible = {};
+        formCtrl.count = 0;
+        formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
+        formCtrl.determinateValue = 0;
+
+        formCtrl.next = function () {
+
+            if (formCtrl.count < formCtrl.quiz.length - 2) {
+                formCtrl.count += 2;
+                formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
+                formCtrl.calcPercentage(formCtrl.count);
+                
+            } else {
+                console.log("last question");
             }
-        );
+        };
 
-        console.log(self.quiz);
-        self.radio_question = {};
-        self.text_question = {};
-        self.token = $state.params.token;
-        self.curso =$state.params.curso;
-        console.log(self.curso); 
-        console.log(self.token)
-        self.visible = {};
+        formCtrl.previous = function () {
 
-        self.toggle = function(q, id) {
+            if (formCtrl.count > 0) {
+                formCtrl.count -= 2;
+                formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
+                formCtrl.calcPercentage(formCtrl.count);
+                
+
+            } else {
+                console.log("first question");
+            }
+
+        };
+
+        formCtrl.calcPercentage = function (count) {
+            formCtrl.determinateValue = count / (formCtrl.quiz.length - 2)*100;
+        };
+
+        formCtrl.toggle = function (q, id) {
             q[id] = !q[id];
         };
 
-        self.sendAnswer = function(token) {
+        formCtrl.sendAnswer = function (token) {
             AnswerService.submitAnswers(token,
-                self.text_question, self.radio_question)
+                formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
                     ngToast.create(response.data);
                 }, function errorCallback(response) {
@@ -39,7 +67,7 @@
                 });
         };
 
-        self.sendNegar = function(token) {
+        formCtrl.sendNegar = function (token) {
             AnswerService.submitNoAnswers(token).then(function successCallback(response) {
                 ngToast.create(response.data);
             }, function errorCallback(response) {
@@ -50,13 +78,11 @@
             });
         };
 
-        self.selectAll = function(value) {
-            for ( var id in self.radio_question) {
-                self.radio_question[id] = value;
-            }
+        formCtrl.selectAll = function (value) {
+            formCtrl.radio_question = formCtrl.radio_question.map(() => {
+                return value;
+            });
         };
-
-     
 
     });
 })();
