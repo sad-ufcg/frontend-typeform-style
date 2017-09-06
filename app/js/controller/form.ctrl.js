@@ -17,7 +17,6 @@
         formCtrl.visible = {};
         formCtrl.count = 0;
         formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
-        formCtrl.determinateValue = 100;
         formCtrl.numberQuestion = 1;
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
         formCtrl.inHome = true;
@@ -43,22 +42,18 @@
 
         formCtrl.next = function () {
 
-            if (formCtrl.determinateValue === 100) {
-                formCtrl.sendQuiz();
-            } else {
-                console.log(formCtrl.determinateValue)
-            }
-
             var LAST_QUESTION = formCtrl.quiz.length - 2;
             if (formCtrl.count < LAST_QUESTION) {
                 formCtrl.count += 2;
                 formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
                 formCtrl.calcPercentage(formCtrl.count);
                 formCtrl.upDateNumberQuestion(1);
+            } else {
+                 formCtrl.sendQuiz();
             }
-
-
         };
+
+
 
         formCtrl.previous = function () {
 
@@ -89,20 +84,19 @@
         };
 
         formCtrl.sendAnswer = function (token) {
-            AnswerService.submitAnswers(token,
-                formCtrl.text_question, formCtrl.radio_question)
+            AnswerService.submitAnswers(token, formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
                     $mdToast.show(
                         $mdToast.simple()
-                            .textContent('Simple Toast!')
-                            .position(pinTo)
+                            .textContent('Enviado com sucesso.' + response.data)
+                            .position("top right")
                             .hideDelay(3000)
                     );
                 }, function errorCallback(response) {
                     $mdToast.show(
                         $mdToast.simple()
-                            .textContent(response.status + " (" + response.statusText + "): " + response.data)
-                            .position('top right')
+                            .textContent("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data)
+                            .position('right top')
                             .hideDelay(3000)
                     );
                 });
@@ -120,12 +114,10 @@
         };
 
         formCtrl.selectAll = function (value) {
-            formCtrl.radio_question = formCtrl.radio_question.map(() => {
-                return value;
-            });
+            for (var id in formCtrl.radio_question) {
+                formCtrl.radio_question[id] = value;
+            }
         };
-
-        formCtrl.isOpen = true;
 
         /***
          * Watch for keyboard pageDown and pageUp buttons pressed
