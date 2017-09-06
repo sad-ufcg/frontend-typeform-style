@@ -63,5 +63,14 @@
 }
 
 .card-header {
+    position: fixed;
+    top: 1;
+    width: 100%;
+    padding: 1% 0;
+    background-color: #4d82cb;
+    color: #dbe3ff;
+}
+
+.card-header-question {
     text-align: justify;
 }
