@@ -1,11 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 
 html,
 body {
     background-color: #ffffff;
     height: 100%;
-    font-family: 'Ruda', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 
 }
 

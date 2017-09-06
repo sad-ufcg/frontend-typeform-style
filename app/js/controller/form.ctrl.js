@@ -22,6 +22,9 @@
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
         formCtrl.inHome = true;
 
+        var PAGE_UP = 33;
+        var PAGE_DOWN = 34;
+
         formCtrl.next = function () {
 
             var LAST_QUESTION = formCtrl.quiz.length - 2;
@@ -90,6 +93,22 @@
                 return value;
             });
         };
+
+        /***
+         * Watch for keyboard pageDown and pageUp buttons pressed
+         */
+        $('body').keydown(function (e) {
+            $scope.$apply(function () {
+
+                var ANSWERED = formCtrl.radio_question[formCtrl.actual_question.id];
+
+                if (e.keyCode == PAGE_DOWN && ANSWERED) {
+                    formCtrl.next();
+                } else if (e.keyCode == PAGE_UP) {
+                    formCtrl.previous();
+                }
+            })
+        });
 
     });
 })();
