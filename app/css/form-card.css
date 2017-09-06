@@ -62,6 +62,15 @@
     font-size: medium;
 }
 
+.card-toolbar {
+    position: fixed;
+    top: 1;
+    width: 100%;
+    padding: 1% 0;
+    background-color: #4d82cb;
+    color: #dbe3ff;
+}
+
 .card-header {
     text-align: justify;
 }
