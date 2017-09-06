@@ -20,6 +20,7 @@
         formCtrl.determinateValue = 0;
         formCtrl.numberQuestion = 1;
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
+        formCtrl.inHome = true;
 
         var PAGE_UP = 33;
         var PAGE_DOWN = 34;
@@ -56,6 +57,11 @@
 
         formCtrl.toggle = function (q, id) {
             q[id] = !q[id];
+        };
+
+        formCtrl.start = function () {
+            console.log("start");
+            formCtrl.inHome = false;
         };
 
         formCtrl.sendAnswer = function (token) {
