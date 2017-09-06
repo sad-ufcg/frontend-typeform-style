@@ -1,12 +1,12 @@
 .question-card {
-    margin-left: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .question-card .card {
     min-height: 50%;
     width: auto !important;
-    max-width: 90% !important;
-
+    max-width: 95% !important;
     background-color: transparent;
 }
 
@@ -47,10 +47,6 @@
     background-color: #dbe3ff;
 }
 
-.card-footer-inner-container {
-
-}
-
 .card-footer span {
     font-size: small;
     padding: 5px 5px;
@@ -64,4 +60,8 @@
 .card-answer-opts {
     padding-left: 2%;
     font-size: medium;
+}
+
+.card-header {
+    text-align: justify;
 }
