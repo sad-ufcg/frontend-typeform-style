@@ -1,5 +1,5 @@
 .question-card {
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: 5%;
 }
 
@@ -45,6 +45,7 @@
     padding: 1% 0;
     color: #4d82cb;
     background-color: #dbe3ff;
+    margin-left: -7%;
 }
 
 .card-footer span {
