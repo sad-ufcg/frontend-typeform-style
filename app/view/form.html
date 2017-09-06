@@ -16,7 +16,7 @@
 
     <!-- Form -->
     <div class="form" layout="row" layout-align="start center">
-        <md-content class="md-padding">
+        <md-content class="md-padding" ng-keydown="formCtrl.down($event)" tabindex="0">
             <div class="question-card">
                 <div class="card">
 
@@ -31,19 +31,19 @@
                             <md-radio-group ng-model="formCtrl.radio_question[formCtrl.actual_question.id]">
                                 <div class="card-answer-opts" layout="column" layout-align="center start">
                                     <div class="checkbox">
-                                        <md-radio-button value="1"> 1&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        <md-radio-button value="1"> 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
                                     </div>
                                     <div class="checkbox">
-                                        <md-radio-button value="2"> 2&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        <md-radio-button value="2"> 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
                                     </div>
                                     <div class="checkbox">
-                                        <md-radio-button value="3"> 3&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        <md-radio-button value="3"> 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
                                     </div>
                                     <div class="checkbox">
-                                        <md-radio-button value="4"> 4&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        <md-radio-button value="4"> 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
                                     </div>
                                     <div class="checkbox">
-                                        <md-radio-button value="5"> 5&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
+                                        <md-radio-button value="5"> 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </md-radio-button>
                                     </div>
                                     <div class="checkbox">
                                         <md-radio-button value="-1">N/A</md-radio-button>
@@ -65,7 +65,6 @@
                 <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
             </div>
             <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
-
             <div layout="row" layout-align="end center">
                 <md-button ng-click="formCtrl.previous()">Anterior</md-button>
                 <md-button ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]" ng-click="formCtrl.next()">Próxima</md-button>
