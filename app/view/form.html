@@ -1,14 +1,28 @@
 <div class="form-container">
+    <!-- Header -->
+    <div class="card-header">
+        <div class="question-card" layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start">
+                <span>UFCG - Ciência da Computação</span>
+            </div>
+            <div layout="row" layout-align="center">
+                <span>Disciplina: {{formCtrl.curso}}</span>
+            </div>
+            <div layout="row" layout-align="end center">
+                <span>2017.1</span>
+            </div>
+        </div>
+    </div>
     <div class="form" layout="row" layout-align="start center">
         <md-content class="md-padding">
             <div class="question-card">
                 <div class="card">
 
-                    <div class="card-header">
+                    <div class="card-header-question">
                         <span class="md-title">{{formCtrl.numberQuestion}}. {{formCtrl.actual_question.enunciado}}</span>
                     </div>
 
-                    <br>
+                    <br />
 
                     <div class="card-content">
                         <form ng-if="formCtrl.actual_question.tipoResposta !== 'TEXTO'" ng-submit="submit()">
