@@ -2,7 +2,7 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($scope, $state, $http, AnswerService, quiz) {
+    app.controller("FormController", function FormController($state, AnswerService, quiz) {
 
         //TODO: treat unexpected situations with toastr
         //      the functions (send, select and sendNegar) haven't been tested yet
@@ -20,6 +20,13 @@
         formCtrl.determinateValue = 0;
         formCtrl.numberQuestion = 1;
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
+
+        (function() {
+            console.log(formCtrl.token);
+            console.log("ASHSAHSAH");
+            AnswerService.tokenIsValid(formCtrl.token);
+
+        })();
 
         formCtrl.next = function () {
 

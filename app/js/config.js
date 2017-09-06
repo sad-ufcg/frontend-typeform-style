@@ -1,8 +1,13 @@
+'use strict';
+
 const app = angular.module('sadApp', ['ngMaterial', 'ui.router']);
 
 app.constant('baseUrl', 'http://localhost:8080');
 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+app.config(function ($qProvider, $stateProvider, $locationProvider, $urlRouterProvider, $httpProvider) {
+
+    $qProvider.errorOnUnhandledRejections(false);
+
 
     $stateProvider
         .state("sad", {
@@ -30,9 +35,9 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
                     templateUrl: 'view/form.html',
                     controller: 'FormController as formCtrl'
                 }
-            }, 
+            },
             resolve: {
-                quiz: function (AnswerService){
+                quiz: function (AnswerService) {
                     return AnswerService.getQuiz();
                 }
             }
@@ -41,6 +46,15 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('');
+
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+    $httpProvider.defaults.headers.put['Content-Type'] = 'application/json; charset=utf-8';
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = "GET,PUT,POST,DELETE,OPTIONS";
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = "Content-Type, Authorization, Content-Length, X-Requested-With";
+ 
 
     app.run(['$rootScope', '$state', function ($rootScope, $state) {
 

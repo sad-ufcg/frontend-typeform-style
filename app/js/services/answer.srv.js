@@ -6,7 +6,7 @@
 
         var service = this;
 
-        const HEADERS = {headers: {'Accept': "text/plain"}};
+        const HEADERS = {headers: {'Accept': "text/plain, application/json"}};
         const URI_QUESTION = "/question";
         const URI_QUESTIONNARIE = "/questionnaireanswers";
 
@@ -82,6 +82,18 @@
              return deffered.promise;
         }
 
+        service.tokenIsValid = function tokenIsValid(token){
+            var token = {"id":token};
+            var deffered = $q.defer();
+            $http.post(baseUrl + URI_QUESTIONNARIE + "/check_token",
+                token).then(
+                function success(response){
+                deffered.resolve(response);
+            }, function error(response){
+                deffered.reject(response);
+            });
+
+        }
     })
 
 })();
