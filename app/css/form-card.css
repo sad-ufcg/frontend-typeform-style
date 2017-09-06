@@ -62,7 +62,7 @@
     font-size: medium;
 }
 
-.card-header {
+.card-toolbar {
     position: fixed;
     top: 1;
     width: 100%;
@@ -71,6 +71,6 @@
     color: #dbe3ff;
 }
 
-.card-header-question {
+.card-header {
     text-align: justify;
 }
