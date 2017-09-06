@@ -1,6 +1,6 @@
 <div class="form-container">
     <!-- Header -->
-    <div class="card-toolbar">
+    <header class="card-toolbar">
         <div class="question-card" layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start">
                 <span>UFCG - Ciência da Computação</span>
@@ -12,7 +12,7 @@
                 <span>2017.1</span>
             </div>
         </div>
-    </div>
+    </header>
 
 
     <section class="home" ng-if="formCtrl.inHome">
@@ -56,24 +56,23 @@
                                 </md-radio-group>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </md-content>
-            <!-- Footer -->
-            <div class="card-footer">
-                <div class="question-card" layout="row" layout-align="space-between center">
-                    <div layout="row" layout-align="start stretch">
-                        <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
-                    </div>
-                    <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
+        </div>
 
-                    <div layout="row" layout-align="end center">
-                        <md-button ng-click="formCtrl.previous()">Anterior</md-button>
-                        <md-button ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]" ng-click="formCtrl.next()">Próxima</md-button>
-                    </div>
+        <!-- Footer -->
+        <footer class="card-footer">
+            <div class="question-card" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start stretch">
+                    <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
+                </div>
+                <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
+                <div layout="row" layout-align="end center">
+                    <md-button ng-click="formCtrl.previous()">Anterior</md-button>
+                    <md-button ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]" ng-click="formCtrl.next()">Próxima</md-button>
                 </div>
             </div>
-        </div>
+        </footer>
     </section>
 </div>

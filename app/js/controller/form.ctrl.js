@@ -2,7 +2,7 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($scope, $state, $http, AnswerService, quiz) {
+    app.controller("FormController", function FormController($mdToast, $scope, $state, $mdDialog, AnswerService, quiz) {
 
         //TODO: treat unexpected situations with toastr
         //      the functions (send, select and sendNegar) haven't been tested yet
@@ -17,13 +17,28 @@
         formCtrl.visible = {};
         formCtrl.count = 0;
         formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
-        formCtrl.determinateValue = 0;
         formCtrl.numberQuestion = 1;
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
         formCtrl.inHome = true;
 
         var PAGE_UP = 33;
         var PAGE_DOWN = 34;
+
+
+        formCtrl.sendQuiz = function () {
+            var confirm = $mdDialog.confirm()
+                .title('Obrigado! Questionário Concluído.')
+                .textContent('Você respondeu todas as questões do formulário. Por favor, confirme o envio.')
+                .ariaLabel('Lucky day')
+                .ok('Enviar Formulário')
+                .cancel('Cancelar Formulário');
+
+            $mdDialog.show(confirm).then(function () {
+                formCtrl.sendAnswer(formCtrl.token);
+            }, function () {
+                console.log("deu negado");
+            });
+        };
 
         formCtrl.next = function () {
 
@@ -33,8 +48,12 @@
                 formCtrl.actual_question = formCtrl.quiz[formCtrl.count];
                 formCtrl.calcPercentage(formCtrl.count);
                 formCtrl.upDateNumberQuestion(1);
+            } else {
+                 formCtrl.sendQuiz();
             }
         };
+
+
 
         formCtrl.previous = function () {
 
@@ -48,11 +67,11 @@
         };
 
         formCtrl.upDateNumberQuestion = function (value) {
-          formCtrl.numberQuestion = formCtrl.numberQuestion + value;
+            formCtrl.numberQuestion = formCtrl.numberQuestion + value;
         };
 
         formCtrl.calcPercentage = function (count) {
-            formCtrl.determinateValue = count / (formCtrl.quiz.length - 2)*100;
+            formCtrl.determinateValue = count / (formCtrl.quiz.length - 2) * 100;
         };
 
         formCtrl.toggle = function (q, id) {
@@ -65,15 +84,21 @@
         };
 
         formCtrl.sendAnswer = function (token) {
-            AnswerService.submitAnswers(token,
-                formCtrl.text_question, formCtrl.radio_question)
+            AnswerService.submitAnswers(token, formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
-                    ngToast.create(response.data);
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('Enviado com sucesso.' + response.data)
+                            .position("top right")
+                            .hideDelay(3000)
+                    );
                 }, function errorCallback(response) {
-                    ngToast.create({
-                        className: 'warning',
-                        content: response.status + " (" + response.statusText + "): " + response.data
-                    });
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data)
+                            .position('right top')
+                            .hideDelay(3000)
+                    );
                 });
         };
 
@@ -89,9 +114,9 @@
         };
 
         formCtrl.selectAll = function (value) {
-            formCtrl.radio_question = formCtrl.radio_question.map(() => {
-                return value;
-            });
+            for (var id in formCtrl.radio_question) {
+                formCtrl.radio_question[id] = value;
+            }
         };
 
         /***
