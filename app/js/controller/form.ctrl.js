@@ -21,9 +21,9 @@
         formCtrl.numberOfQuestions = formCtrl.quiz.length / 2;
         formCtrl.inHome = true;
 
-        var PAGE_UP = 33;
-        var PAGE_DOWN = 34;
-        var ENTER = 13;
+        const PAGE_UP = 33;
+        const PAGE_DOWN = 34;
+        const ENTER = 13;
 
 
         formCtrl.sendQuiz = function () {
@@ -43,7 +43,7 @@
 
         formCtrl.next = function () {
 
-          
+
             var LAST_QUESTION = formCtrl.quiz.length - 2;
             if (formCtrl.count < LAST_QUESTION) {
                 formCtrl.count += 2;
@@ -51,7 +51,7 @@
                 formCtrl.calcPercentage(formCtrl.count);
                 formCtrl.upDateNumberQuestion(1);
             } else {
-                 formCtrl.sendQuiz();
+                formCtrl.sendQuiz();
             }
         };
 
@@ -87,30 +87,18 @@
         formCtrl.sendAnswer = function (token) {
             AnswerService.submitAnswers(token, formCtrl.text_question, formCtrl.radio_question)
                 .then(function successCallback(response) {
-                    $mdToast.show(
-                        $mdToast.simple()
-                            .textContent('Enviado com sucesso.' + response.data)
-                            .position("top right")
-                            .hideDelay(3000)
-                    );
+                    formCtrl._createToast('Enviado com sucesso.' + response.data);
                 }, function errorCallback(response) {
-                    $mdToast.show(
-                        $mdToast.simple()
-                            .textContent("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data)
-                            .position('right top')
-                            .hideDelay(3000)
-                    );
-                });
+                    formCtrl._createToast("Erro ao enviar formulário" + response.status + " (" + response.statusText + "): " + response.data);
+
+          });
         };
 
         formCtrl.sendNegar = function (token) {
             AnswerService.submitNoAnswers(token).then(function successCallback(response) {
-                ngToast.create(response.data);
+                formCtrl._createToast(response.data);
             }, function errorCallback(response) {
-                ngToast.create({
-                    className: 'warning',
-                    content: response.status + " (" + response.statusText + "): " + response.data
-                });
+                formCtrl._createToast(response.data);
             });
         };
 
@@ -118,6 +106,15 @@
             for (var id in formCtrl.radio_question) {
                 formCtrl.radio_question[id] = value;
             }
+        };
+
+        formCtrl._createToast = function (response) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(response)
+                    .position("top right")
+                    .hideDelay(3000)
+            );
         };
 
         /***
@@ -141,7 +138,7 @@
         });
 
 
-        
+
 
     });
 })();
