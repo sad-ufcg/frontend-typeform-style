@@ -9,6 +9,7 @@
 
         var formCtrl = this;
 
+        console.log(quiz.data)
         formCtrl.quiz = quiz.data;
         formCtrl.radio_question = {};
         formCtrl.text_question = {};
@@ -42,6 +43,9 @@
         };
 
         formCtrl.next = function () {
+
+            console.log(formCtrl.text_question[formCtrl.actual_question.id])
+            console.log(formCtrl.text_question)
 
             var LAST_QUESTION = formCtrl.quiz.length - 2;
             if (formCtrl.count < LAST_QUESTION) {
