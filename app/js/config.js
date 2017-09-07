@@ -18,8 +18,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
             url: "/home",
             views: {
                 content: {
-                    templateUrl: 'view/home.html',
-                    controller: 'HomeController as homeCtrl'
+                    templateUrl: 'view/home.html'
                 }
             }
         })
