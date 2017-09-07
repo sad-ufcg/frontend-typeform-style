@@ -1,4 +1,4 @@
-const app = angular.module('sadApp', ['ngMaterial', 'ui.router']);
+const app = angular.module('sadApp', ['ngAnimate','ngAria', 'ngSanitize', 'ngMaterial', 'ui.router']);
 
 app.constant('baseUrl', 'http://localhost:8080');
 

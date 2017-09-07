@@ -2,7 +2,7 @@
 (function () {
     var app = angular.module('sadApp');
 
-    app.controller("FormController", function FormController($mdToast, $scope, $state, $mdDialog, AnswerService, quiz) {
+    app.controller("FormController", function FormController($mdToast, $scope, $state, $mdDialog, AnswerService, quiz, $mdIcon) {
 
         //TODO: treat unexpected situations with toastr
         //      the functions (send, select and sendNegar) haven't been tested yet
