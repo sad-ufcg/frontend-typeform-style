@@ -15,6 +15,8 @@
     </section>
 
     <section ng-if="!formCtrl.inHome">
+
+        <!-- Question card -->
         <div class="card" layout="row" layout-align="start center">
             <md-content class="md-padding">
                 <div class="question-card">
@@ -54,24 +56,33 @@
             </md-content>
         </div>
 
-        <!-- Footer -->
-        <footer class="card-footer">
-            <div class="question-card" layout="row" layout-align="space-between center">
-                <div layout="row" layout-align="start stretch">
-                    <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
-                </div>
+        <!-- Form Footer -->
+        <footer class="card-footer" layout="column" layout-align="center stretch">
+            <div class="question-card">
+                <div class="row">
+                    <div class="col-xs-6 col-md-8">
+                        <div layout="column" layout-align="center stretch">
+                            <div layout="row" layout-align="start start">
+                                <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
+                            </div>
+                            <div layout="row" layout-align="start start">
+                                <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
+                            </div>
+                        </div>
+                    </div>
 
-                <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
-
-                <div layout="row" layout-align="end center">
-                    <md-button class="md-smaller card-button-box" ng-click="formCtrl.previous()">
-                        <md-icon class="card-button">keyboard_arrow_up</md-icon>
-                    </md-button>
-                    <md-button class="md-smaller card-button-box"
-                               ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]"
-                               ng-click="formCtrl.next()">
-                        <md-icon class="card-button">keyboard_arrow_down</md-icon>
-                    </md-button>
+                    <div class="col-xs-6 col-md-4">
+                        <div layout="row" layout-align="end center">
+                            <md-button class="md-smaller card-button-box" ng-click="formCtrl.previous()">
+                                <md-icon class="card-button">keyboard_arrow_up</md-icon>
+                            </md-button>
+                            <md-button class="md-smaller card-button-box"
+                                       ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]"
+                                       ng-click="formCtrl.next()">
+                                <md-icon class="card-button">keyboard_arrow_down</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
