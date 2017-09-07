@@ -23,6 +23,7 @@
 
         var PAGE_UP = 33;
         var PAGE_DOWN = 34;
+        var ENTER = 13;
 
 
         formCtrl.sendQuiz = function () {
@@ -123,6 +124,7 @@
          * Watch for keyboard pageDown and pageUp buttons pressed
          */
         $('body').keydown(function (e) {
+            console.log(e.keyCode)
             $scope.$apply(function () {
 
                 var ANSWERED = formCtrl.radio_question[formCtrl.actual_question.id];
@@ -131,6 +133,10 @@
                     formCtrl.next();
                 } else if (e.keyCode == PAGE_UP) {
                     formCtrl.previous();
+                }
+
+                if (e.keyCode == ENTER && formCtrl.inHome) {
+                    formCtrl.start();
                 }
             })
         });
