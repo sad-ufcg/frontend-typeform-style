@@ -54,7 +54,7 @@
                 <br />
                 <md-input-container class="md-block" flex-gt-sm style="margin-right:30%; margin-left:21.5%">
                     <label>Comentario</label>
-                    <textarea name="bio" ng-model="biography" required md-maxlength="150" max-rows="2"></textarea>
+                    <textarea name="bio" ng-model="formCtrl.text_question[formCtrl.actual_question.id]" required md-maxlength="255" max-rows="2"></textarea>
                 </md-input-container>
             </md-content>
         </div>
