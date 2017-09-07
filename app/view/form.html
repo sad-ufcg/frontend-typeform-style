@@ -1,24 +1,26 @@
-<div class="my-container">
+<md-content>
 
     <!-- Header Home -->
-    <div class="card-toolbar">
-        <div class="row" layout="row" layout-align="center center">
-            <div class="col-xs-4 col-sm-4">UFCG</div>
-            <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
-            <div class="col-xs-4 col-sm-4">2017.1</div>
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <div class="row card-toolbar" layout="row" layout-align="center center">
+                <div class="col-xs-4 col-sm-4">UFCG</div>
+                <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
+                <div class="col-xs-4 col-sm-4">2017.1</div>
+            </div>
         </div>
-    </div>
+    </md-toolbar>
 
     <section class="home" ng-if="formCtrl.inHome">
         <div ng-include="'view/home.html'">
         </div>
     </section>
 
-    <section ng-if="!formCtrl.inHome">
+    <section ng-if="!formCtrl.inHome" layout="column" layout-align="center stretch">
 
         <!-- Question card -->
         <div class="card" layout="row" layout-align="start center">
-            <md-content class="md-padding">
+            <div class="content">
                 <div class="question-card">
                     <div class="card">
                         <div class="card-header-question">
@@ -51,9 +53,14 @@
                                 </md-radio-group>
                             </form>
                         </div>
+                        <br/>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Comentário</label>
+                            <textarea name="bio" ng-model="formCtrl.text_question[formCtrl.actual_question.id]" md-maxlength="255" max-rows="2"></textarea>
+                        </md-input-container>
                     </div>
                 </div>
-            </md-content>
+            </div>
         </div>
 
         <!-- Form Footer -->
@@ -86,5 +93,7 @@
                 </div>
             </div>
         </footer>
+
     </section>
-</div>
+
+</md-content>

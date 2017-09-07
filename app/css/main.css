@@ -23,14 +23,87 @@ section {
 }
 
 .card {
-    position: relative;
     min-width: 100%;
-    min-height: 85%;
     height: auto !important;
-    height: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-md-content {
+.content {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 2%;
+
     width: 100%;
     background-color: transparent;
 }
+
+.md-toolbar-tools {
+    padding: 0 0;
+    background-color: #4d82cb;
+}
+
+.card-toolbar {
+    margin: 0 0;
+    width: 100%;
+
+    color: #dbe3ff;
+    background-color: #4d82cb;
+
+    font-size: 1em;
+    text-align: center;
+}
+
+.card-header {
+    text-align: justify;
+}
+
+.presentation-card {
+    margin-left: 2%;
+    margin-right: 2%;
+
+    top: 17%;
+    width: 100%;
+    padding: 1% 0;
+}
+
+.image-card {
+    top: 3%;
+    width: 100%;
+    padding: 1% 0;
+    padding-top: 14%;
+}
+
+.instructions-card {
+    top: 32%;
+    width: 100%;
+    padding: 1% 0;
+}
+
+.introduction-text {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.rules-text {
+    font-size: x-small;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.home-footer {
+    position: fixed;
+    top: 93%;
+    height: 7%;
+    width: 100%;
+    color: #4d82cb;
+    background-color: #dbe3ff;
+}
+
