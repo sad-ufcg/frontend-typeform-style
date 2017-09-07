@@ -1,4 +1,4 @@
-<div>
+<md-content>
 
     <!-- Header Home -->
     <md-toolbar md-scroll-shrink>
@@ -16,11 +16,11 @@
         </div>
     </section>
 
-    <section class="content" ng-if="!formCtrl.inHome">
+    <section ng-if="!formCtrl.inHome" layout="column" layout-align="center stretch">
 
         <!-- Question card -->
         <div class="card" layout="row" layout-align="start center">
-            <md-content flex>
+            <div class="content">
                 <div class="question-card">
                     <div class="card">
                         <div class="card-header-question">
@@ -60,7 +60,7 @@
                         </md-input-container>
                     </div>
                 </div>
-            </md-content>
+            </div>
         </div>
 
         <!-- Form Footer -->
@@ -93,5 +93,7 @@
                 </div>
             </div>
         </footer>
+
     </section>
-</div>
+
+</md-content>
