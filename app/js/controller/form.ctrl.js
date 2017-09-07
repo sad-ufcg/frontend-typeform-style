@@ -9,7 +9,6 @@
 
         var formCtrl = this;
 
-        console.log(quiz.data)
         formCtrl.quiz = quiz.data;
         formCtrl.radio_question = {};
         formCtrl.text_question = {};
@@ -38,15 +37,13 @@
             $mdDialog.show(confirm).then(function () {
                 formCtrl.sendAnswer(formCtrl.token);
             }, function () {
-                console.log("deu negado");
+                //TODO: 
             });
         };
 
         formCtrl.next = function () {
 
-            console.log(formCtrl.text_question[formCtrl.actual_question.id])
-            console.log(formCtrl.text_question)
-
+          
             var LAST_QUESTION = formCtrl.quiz.length - 2;
             if (formCtrl.count < LAST_QUESTION) {
                 formCtrl.count += 2;
@@ -84,7 +81,6 @@
         };
 
         formCtrl.start = function () {
-            console.log("start");
             formCtrl.inHome = false;
         };
 
@@ -128,7 +124,6 @@
          * Watch for keyboard pageDown and pageUp buttons pressed
          */
         $('body').keydown(function (e) {
-            console.log(e.keyCode)
             $scope.$apply(function () {
 
                 var ANSWERED = formCtrl.radio_question[formCtrl.actual_question.id];
@@ -144,6 +139,9 @@
                 }
             })
         });
+
+
+        
 
     });
 })();
