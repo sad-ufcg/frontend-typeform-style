@@ -1,24 +1,26 @@
-<div class="my-container">
+<div>
 
     <!-- Header Home -->
-    <div class="card-toolbar">
-        <div class="row" layout="row" layout-align="center center">
-            <div class="col-xs-4 col-sm-4">UFCG</div>
-            <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
-            <div class="col-xs-4 col-sm-4">2017.1</div>
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <div class="row card-toolbar" layout="row" layout-align="center center">
+                <div class="col-xs-4 col-sm-4">UFCG</div>
+                <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
+                <div class="col-xs-4 col-sm-4">2017.1</div>
+            </div>
         </div>
-    </div>
+    </md-toolbar>
 
     <section class="home" ng-if="formCtrl.inHome">
         <div ng-include="'view/home.html'">
         </div>
     </section>
 
-    <section ng-if="!formCtrl.inHome">
+    <section class="content" ng-if="!formCtrl.inHome">
 
         <!-- Question card -->
         <div class="card" layout="row" layout-align="start center">
-            <md-content>
+            <md-content flex>
                 <div class="question-card">
                     <div class="card">
                         <div class="card-header-question">
