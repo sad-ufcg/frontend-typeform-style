@@ -1,5 +1,5 @@
 .question-card {
-    margin-left: 5%;
+    margin-left: 20%;
     margin-right: 5%;
 }
 
@@ -64,12 +64,17 @@
 }
 
 .card-toolbar {
+    top: 0;
     position: fixed;
-    top: 1;
+
+    padding: 1% 1%;
     width: 100%;
-    padding: 1% 0;
-    background-color: #4d82cb;
+
     color: #dbe3ff;
+    background-color: #4d82cb;
+
+    font-size: 1em;
+    text-align: center;
 }
 
 .card-header {
