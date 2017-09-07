@@ -1,35 +1,28 @@
-<div class="form-container">
-    <!-- Header -->
-    <header class="card-toolbar">
-        <div class="question-card" layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start">
-                <span>UFCG - Ciência da Computação</span>
-            </div>
-            <div layout="row" layout-align="center">
-                <span>Disciplina: {{formCtrl.curso}}</span>
-            </div>
-            <div layout="row" layout-align="end center">
-                <span>2017.1</span>
-            </div>
-        </div>
-    </header>
+<div class="my-container">
 
+    <!-- Header Home -->
+    <div class="card-toolbar">
+        <div class="row" layout="row" layout-align="center center">
+            <div class="col-xs-4 col-sm-4">UFCG</div>
+            <div class="col-xs-4 col-sm-4">Disciplina: {{formCtrl.curso}}</div>
+            <div class="col-xs-4 col-sm-4">2017.1</div>
+        </div>
+    </div>
 
     <section class="home" ng-if="formCtrl.inHome">
         <div ng-include="'view/home.html'">
-
         </div>
     </section>
 
     <section ng-if="!formCtrl.inHome">
-        <div class="form" layout="row" layout-align="start center">
+        <div class="card" layout="row" layout-align="start center">
             <md-content class="md-padding">
                 <div class="question-card">
                     <div class="card">
                         <div class="card-header-question">
                             <span class="md-title">{{formCtrl.numberQuestion}}. {{formCtrl.actual_question.enunciado}}</span>
                         </div>
-                        <br />
+                        <br/>
                         <div class="card-content">
                             <form ng-if="formCtrl.actual_question.tipoResposta !== 'TEXTO'" ng-submit="submit()">
                                 <md-radio-group ng-model="formCtrl.radio_question[formCtrl.actual_question.id]">
@@ -67,10 +60,18 @@
                 <div layout="row" layout-align="start stretch">
                     <span>{{formCtrl.numberQuestion}} de {{formCtrl.numberOfQuestions}} perguntas</span>
                 </div>
+
                 <md-progress-linear md-mode="determinate" value="{{formCtrl.determinateValue}}"></md-progress-linear>
+
                 <div layout="row" layout-align="end center">
-                    <md-button ng-click="formCtrl.previous()">Anterior</md-button>
-                    <md-button ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]" ng-click="formCtrl.next()">Próxima</md-button>
+                    <md-button class="md-smaller card-button-box" ng-click="formCtrl.previous()">
+                        <md-icon class="card-button">keyboard_arrow_up</md-icon>
+                    </md-button>
+                    <md-button class="md-smaller card-button-box"
+                               ng-disabled="!formCtrl.radio_question[formCtrl.actual_question.id]"
+                               ng-click="formCtrl.next()">
+                        <md-icon class="card-button">keyboard_arrow_down</md-icon>
+                    </md-button>
                 </div>
             </div>
         </footer>
