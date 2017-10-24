@@ -37,7 +37,7 @@
             $mdDialog.show(confirm).then(function () {
                 formCtrl.sendAnswer(formCtrl.token);
             }, function () {
-                //TODO: 
+                //TODO:
             });
         };
 
@@ -118,6 +118,11 @@
         };
 
         /***
+         * Geralmente não é indicado utilizar angular.js com jquery.
+         * Se o jquery usado for apenas este aqui, vale a pena ver se isso
+         * aqui https://github.com/bfanger/angular-keyboard
+         * já não lhes dão as funções que precisam.
+         *
          * Watch for keyboard pageDown and pageUp buttons pressed
          */
         $('body').keydown(function (e) {
