@@ -23,9 +23,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/form-card.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/home.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/app/css/form-card.css">
+    <link rel="stylesheet" href="/app/css/home.css">
+    <link rel="stylesheet" href="/app/css/main.css">
+    <!-- endinject -->
 </head>
 
 <body ng-app="sadApp" ng-cloak>
@@ -49,12 +51,15 @@
     <!-- Config -->
     <script src="./js/config.js"></script>
 
-    <!-- Controller -->
-    <script src="./js/controller/main.ctrl.js"></script>
-    <script src="./js/controller/form.ctrl.js"></script>
+    <!-- controllers:js -->
+    <script src="/app/js/controller/form.ctrl.js"></script>
+    <script src="/app/js/controller/home.ctrl.js"></script>
+    <script src="/app/js/controller/main.ctrl.js"></script>
+    <!-- endinject -->
 
-    <!-- Services -->
-    <script src="./js/services/answer.srv.js"></script>
+    <!-- services:js -->
+    <script src="/app/js/services/answer.srv.js"></script>
+    <!-- endinject -->
 
 </body>
 
